@@ -49,4 +49,5 @@ public interface WordDao {
 
     @Query("DELETE FROM word_table")
     void deleteAll();
+
 }

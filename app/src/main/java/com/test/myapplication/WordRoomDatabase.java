@@ -105,6 +105,8 @@ abstract class WordRoomDatabase extends RoomDatabase {
             public void migrate(SupportSQLiteDatabase database) {
                 database.execSQL("CREATE TABLE IF NOT EXISTS `itinerary_list_marker` (`_id` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, `itinerary_id` TEXT, `marker_type` TEXT, `marker_hash` TEXT)");
                 database.execSQL("CREATE UNIQUE INDEX `index_itinerary_list_marker_itinerary_id_marker_type` ON `itinerary_list_marker` (`itinerary_id`, `marker_type`)");
+                database.execSQL("INSERT INTO `itinerary_list_marker` (_id,itinerary_id)\n" +
+                        "VALUES('dodo', 'value2');");
             }
         };
     }
