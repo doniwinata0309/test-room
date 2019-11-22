@@ -36,7 +36,7 @@ import java.util.concurrent.Executors;
  * app, consider exporting the schema to help you with migrations.
  */
 
-@Database(entities = {Word.class}, version = 1, exportSchema = false)
+@Database(entities = {Word.class}, version = 2, exportSchema = false)
 abstract class WordRoomDatabase extends RoomDatabase {
 
     abstract WordDao wordDao();
@@ -93,20 +93,20 @@ abstract class WordRoomDatabase extends RoomDatabase {
 
     public static Migration[] getMigrations() {
         List<Migration> migrations = new ArrayList<>();
-//        migrations.add(getMigrationsV1To2()); //Add table transaction_list and transaction_detail
+        migrations.add(getMigrationsV1To2()); //Add table transaction_list and transaction_detail
 
         Migration[] migrationsArr = new Migration[migrations.size()];
         return migrations.toArray(migrationsArr);
     }
 
-//    private static Migration getMigrationsV1To2() {
-//        return new Migration(1, 2) {
-//            @Override
-//            public void migrate(SupportSQLiteDatabase database) {
-//                database.execSQL("CREATE TABLE IF NOT EXISTS `itinerary_list_marker` (`_id` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, `itinerary_id` TEXT, `marker_type` TEXT, `marker_hash` TEXT)");
-//                database.execSQL("CREATE UNIQUE INDEX `index_itinerary_list_marker_itinerary_id_marker_type` ON `itinerary_list_marker` (`itinerary_id`, `marker_type`)");
-//            }
-//        };
-//    }
+    private static Migration getMigrationsV1To2() {
+        return new Migration(1, 2) {
+            @Override
+            public void migrate(SupportSQLiteDatabase database) {
+                database.execSQL("CREATE TABLE IF NOT EXISTS `itinerary_list_marker` (`_id` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, `itinerary_id` TEXT, `marker_type` TEXT, `marker_hash` TEXT)");
+                database.execSQL("CREATE UNIQUE INDEX `index_itinerary_list_marker_itinerary_id_marker_type` ON `itinerary_list_marker` (`itinerary_id`, `marker_type`)");
+            }
+        };
+    }
 
 }
