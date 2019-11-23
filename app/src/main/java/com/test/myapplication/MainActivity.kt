@@ -17,6 +17,11 @@ class MainActivity : AppCompatActivity() {
         db.wordDao().insert(Word(System.currentTimeMillis().toString()))
         db.wordDao().insert(Word(System.currentTimeMillis().toString()))
 
+        val db2 = WordRoomDatabase2.getDatabase(application)
+        db2.wordDao().insert(Word(System.currentTimeMillis().toString()))
+        db2.wordDao().insert(Word(System.currentTimeMillis().toString()))
+        db2.wordDao().insert(Word(System.currentTimeMillis().toString()))
+
         db.wordDao().alphabetizedWords
     }
 }
