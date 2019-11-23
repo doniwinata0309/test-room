@@ -35,10 +35,10 @@ import java.util.concurrent.Executors;
  * app, consider exporting the schema to help you with migrations.
  */
 
-@Database(entities = {Word.class}, version = 1, exportSchema = false)
+@Database(entities = {Word2.class}, version = 1, exportSchema = false)
 abstract class WordRoomDatabase2 extends RoomDatabase {
 
-    abstract WordDao wordDao();
+    abstract WordDao2 wordDao();
 
 
     // marking the instance as volatile to ensure atomic access to the variable
